@@ -80,9 +80,12 @@ forward pass에서 kv-cache 블락들이 활용되는 다이어그램
 궁금한 점은 kv-cache block과 decode 결과는 어떤 연관성이 있길래 저렇게 같은 블락 안의 빈 공간을 활용할 수 있는것인가.
 
 
+forward 한번에는
+1. 가중치 메모리에서 읽기
+2. 곱셈 연산(토큰 수에 비례)
 
 
-
+prefill chunk랑 kv-cache block이랑 헷갈리는듯.
 
 
 
