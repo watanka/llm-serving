@@ -85,6 +85,7 @@ forward 한번에는
 2. 곱셈 연산(토큰 수에 비례)
 
 
+
 prefill chunk랑 kv-cache block이랑 헷갈리는듯.
 
 
@@ -92,44 +93,23 @@ prefill chunk랑 kv-cache block이랑 헷갈리는듯.
 
 
 
+### Advanced Features
+
+
+- chunked prefill
+프롬프트가 너무 길 때, 하나의 요청이 gpu를 오래 점유하고 있는 것을 방지하기 위해 prefill을 chunk 단위로 분리. `long_prefill_token_threshold로` 사이즈 조절
+
+- prefix caching
 
 
 
 
+질문 정리
+prefill chunk랑 kv-cache block이랑 헷갈리는듯.
 
+forward pass에서 kv-cache 블락들이 활용되는 다이어그램
+궁금한 점은 kv-cache block과 decode 결과는 어떤 연관성이 있길래 저렇게 같은 블락 안의 빈 공간을 활용할 수 있는것인가.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+근본적인 질문 하나. kv-cache는 문장 내 토큰과 토큰 간의 조합 아닌가? nxm이 되는. 근데 이게 kv-cache로 대부분 hit될 수 있을 정도로 조합이 몇개 없는건가? kv-cache가 hit이 자주되나? kv-cache 제대로 이해 못한듯
+prefix caching의 tradeoff?
+prefix caching을 기반으로 라우팅하면 특정 인스턴스에 부하가 몰릴 수 있음
